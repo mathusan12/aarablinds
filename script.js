@@ -17,6 +17,7 @@ function updateHeader() {
     }
 }
 
+
 /* =========================
    CTA PARALLAX EFFECT
 ========================= */
