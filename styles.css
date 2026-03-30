@@ -1,13 +1,14 @@
 :root {
     --font-sans: 'Inter', sans-serif;
     --font-serif: 'Playfair Display', serif;
-    --color-primary: #4c0519; /* Deep rich red (rose-950 approx) */
+    --color-primary: #4c0519; /* Deep rich red */
 }
 
 body {
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    margin: 0;
 }
 
 h1, h2, h3, h4, h5, h6, .font-serif {
@@ -39,6 +40,285 @@ h1, h2, h3, h4, h5, h6, .font-serif {
 .header-scrolled {
     background-color: rgba(250, 250, 250, 0.95);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    color: #1c1917; /* stone-900 */
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    color: #1c1917;
+}
+
+/* =========================
+   CTA PARALLAX SECTION
+========================= */
+
+.cta-parallax-section {
+    position: relative;
+    overflow: hidden;
+    padding: 7rem 1.5rem;
+    color: white;
+    text-align: center;
+    isolation: isolate;
+    background: #1c1917;
+}
+
+.cta-parallax-bg-wrap {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.cta-parallax-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 110%;
+    height: 140%;
+    object-fit: cover;
+    object-position: center;
+    transform: translate3d(-50%, -50%, 0);
+    will-change: transform;
+    pointer-events: none;
+    user-select: none;
+}
+
+.cta-parallax-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.60)),
+        rgba(0, 0, 0, 0.18);
+    pointer-events: none;
+}
+
+.cta-parallax-content {
+    position: relative;
+    z-index: 2;
+    max-width: 48rem;
+    margin: 0 auto;
+}
+
+.contact-input {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #e7e5e4;
+    color: #1c1917;
+    padding: 1rem 1.1rem;
+    border-radius: 0.9rem;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.contact-input::placeholder {
+    color: #a8a29e;
+}
+
+.contact-input:focus {
+    outline: none;
+    border-color: #4c0519;
+    box-shadow: 0 0 0 4px rgba(76, 5, 25, 0.08);
+    background-color: #fff;
+}
+
+.contact-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+}
+
+.contact-textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+/* Floating WhatsApp Button */
+.whatsapp-float {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+/* Label */
+.whatsapp-label {
+    background: rgba(255, 255, 255, 0.92);
+    color: #52525b;
+    padding: 10px 16px;        /* smaller */
+    border-radius: 10px;       /* tighter */
+    font-size: 12.5px;         /* slightly smaller */
+    font-weight: 400;          /* lighter base */
+    line-height: 1;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    white-space: nowrap;
+    transition: all 0.25s ease;
+}
+
+/* Green circle (slightly smaller) */
+.whatsapp-icon-wrap {
+    width: 60px;
+    height: 60px;
+    border-radius: 9999px;
+    background: #25D366;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex-shrink: 0;
+}
+
+/* Icon inside (bigger for better balance) */
+.whatsapp-icon {
+    width: 32px;
+    height: 32px;
+    transform: translateY(1px); /* subtle visual centering */
+}
+
+/* Hover Effects */
+.whatsapp-float:hover .whatsapp-icon-wrap {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.20);
+}
+
+.whatsapp-float:hover .whatsapp-label {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.97);
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    .whatsapp-float {
+        right: 16px;
+        bottom: 16px;
+        gap: 0;
+    }
+
+    .whatsapp-label {
+        display: none;
+    }
+
+    .whatsapp-icon-wrap {
+        width: 52px;
+        height: 52px;
+    }
+
+    .whatsapp-icon {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* =========================
+   ABOUT PAGE STYLES
+========================= */
+
+/* Typography helpers */
+.font-serif {
+    font-family: 'Playfair Display', serif;
+}
+
+.text-primary {
+    color: #4c0519;
+}
+
+.bg-primary {
+    background-color: #4c0519;
+}
+
+/* Card style (used across sections) */
+.about-card {
+    background: #ffffff;
+    border: 1px solid rgb(231 229 228);
+    border-radius: 1.5rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+}
+
+/* Subtle hover (premium feel) */
+.about-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.08);
+}
+
+/* Section spacing consistency */
+.section-padding {
+    padding: 6rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .section-padding {
+        padding: 7rem 2rem;
+    }
+}
+
+/* Hero overlay gradient (clean + premium) */
+.hero-overlay {
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 0, 0.45),
+        rgba(28, 25, 23, 0.6)
+    );
+}
+
+/* Smooth text readability on images */
+.text-on-image {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Small label styling (used for section headings) */
+.section-label {
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgb(168 162 158); /* stone-400 */
+    margin-bottom: 1.25rem;
+    display: block;
+}
+
+/* Grid spacing consistency */
+.grid-gap {
+    gap: 1.5rem;
+}
+
+/* Clean container width control */
+.container-custom {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Footer refinement (optional upgrade) */
+.footer-link {
+    transition: color 0.25s ease;
+}
+
+.footer-link:hover {
+    color: #1c1917; /* darker */
+}
+
+/* Smooth transitions globally */
+* {
+    transition: all 0.2s ease;
+}
+
+@media (min-width: 768px) {
+    .cta-parallax-section {
+        padding-top: 8rem;
+        padding-bottom: 8rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .cta-parallax-bg {
+        width: 125%;
+        height: 130%;
+    }
 }
